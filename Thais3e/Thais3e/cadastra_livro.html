@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastrador de livros</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="destaque">
+        <h1>Cadastrador de livros</h1>
+        <p>Nesta página, você pode cadastrar um livro no nosso banco de dados ao preencher a tabela e apertar em "enviar"</p>
+
+        <form action="cadastra_livro.php" method="post">
+
+            <label for="Nome">Titulo</label>
+            <input type="text" name="Nome">
+            <br><br>
+
+            <label for="Autor">Autor</label>
+            <input type="text" name="Autor">
+            <br><br>
+
+            <label for="Genero">Genero principal(apenas um)</label>
+            <input type="text" name="Genero">
+            <br><br>
+
+            <label for="Dat_pub">Data de publicação</label>
+            <input type="date" name="Dat_pub">
+            <br><br>
+
+            <label for="Sinopse">Sinopse</label>
+            <input type="text" name="Sinopse">
+
+        </form>
+        <br><br>
+
+        <input type="submit" value="enviar" style="width: 100px;">
+
+    </div>
+</body>
+</html>
