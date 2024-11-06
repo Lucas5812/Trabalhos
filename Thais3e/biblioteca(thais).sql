@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/11/2024 às 04:37
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 06-Nov-2024 às 22:25
+-- Versão do servidor: 10.4.25-MariaDB
+-- versão do PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,29 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `autores`
---
-
-CREATE TABLE `autores` (
-  `Id_autor` int(11) NOT NULL,
-  `Nome` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `autores`
---
-
-INSERT INTO `autores` (`Id_autor`, `Nome`) VALUES
-(1, 'George R.R Martin'),
-(2, 'Patrick Rothfuss'),
-(3, 'John Green'),
-(4, 'William P. Young'),
-(5, 'Joaquim Manoel de Macedo');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `clientes`
+-- Estrutura da tabela `clientes`
 --
 
 CREATE TABLE `clientes` (
@@ -57,10 +35,10 @@ CREATE TABLE `clientes` (
   `CEP` int(11) NOT NULL,
   `Data_nasc` date NOT NULL,
   `Num_telefone` bigint(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `clientes`
+-- Extraindo dados da tabela `clientes`
 --
 
 INSERT INTO `clientes` (`Id_cliente`, `CPF`, `Nome`, `Email`, `CEP`, `Data_nasc`, `Num_telefone`) VALUES
@@ -74,7 +52,7 @@ INSERT INTO `clientes` (`Id_cliente`, `CPF`, `Nome`, `Email`, `CEP`, `Data_nasc`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `emprestimos`
+-- Estrutura da tabela `emprestimos`
 --
 
 CREATE TABLE `emprestimos` (
@@ -83,10 +61,10 @@ CREATE TABLE `emprestimos` (
   `Id_Cliente` int(11) NOT NULL,
   `Data_Emprestimo` date NOT NULL,
   `data_devolucao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `emprestimos`
+-- Extraindo dados da tabela `emprestimos`
 --
 
 INSERT INTO `emprestimos` (`Id_emprestimo`, `Id_Livro`, `Id_Cliente`, `Data_Emprestimo`, `data_devolucao`) VALUES
@@ -104,143 +82,47 @@ INSERT INTO `emprestimos` (`Id_emprestimo`, `Id_Livro`, `Id_Cliente`, `Data_Empr
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `generos`
---
-
-CREATE TABLE `generos` (
-  `Id_genero` int(11) NOT NULL,
-  `Nome` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `generos`
---
-
-INSERT INTO `generos` (`Id_genero`, `Nome`) VALUES
-(1, 'Aventura'),
-(2, 'Romance'),
-(3, 'Fantasia'),
-(4, 'Religioso'),
-(5, 'Investigação'),
-(6, 'Terror/Horror'),
-(7, 'Drama');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `livros`
+-- Estrutura da tabela `livros`
 --
 
 CREATE TABLE `livros` (
   `Id_livro` int(11) NOT NULL,
-  `Id_autor` int(11) NOT NULL,
-  `Id_genero` int(11) NOT NULL,
+  `autor` varchar(255) NOT NULL,
+  `genero` varchar(255) NOT NULL,
   `Nome` varchar(255) NOT NULL,
   `Data_publicacao` date NOT NULL,
   `Sinopse` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `livros`
+-- Extraindo dados da tabela `livros`
 --
 
-INSERT INTO `livros` (`Id_livro`, `Id_autor`, `Id_genero`, `Nome`, `Data_publicacao`, `Sinopse`) VALUES
-(1, 5, 2, 'A Moreninha', '1884-01-01', 'Um grupo de amigos faz faculdade de medicina resolvem passar um feriado na casa de uma pessoa chamada Fabrício, entre eles está Augusto, um homem emocionado. Eles fazem uma aposta aonde quem se apaixonar deve escrever um livro'),
-(2, 1, 1, 'A guerra dos tronos: As crônicas de Gelo e fogo vol.1', '1996-08-06', 'A guerra dos tronos é o primeiro livro da série best-seller internacional As Crônicas de Gelo e Fogo, que deu origem à adaptação de sucesso da HBO, Game of Thrones.\r\nO verão pode durar décadas. O inverno, toda uma vida. E a guerra dos tronos começou. Como'),
-(3, 1, 1, 'A fúria dos reis: As crônicas de Gelo e Fogo vol.2', '1998-11-16', 'Um cometa da cor de fogo e sangue corta os céus. E, da antiga cidadela de Pedra do Dragão às costas áridas de Winterfell, reina o caos.\r\nEm A fúria dos reis , seis facções disputam o controle de uma terra dividida e o direito de ocupar o Trono de Ferro de'),
-(4, 2, 3, 'O nome do vento: A crônica do matador de reis vol.1', '2009-07-16', 'Ninguém sabe ao certo quem é o herói ou o vilão desse fascinante universo criado por Patrick Rothfuss. Na realidade, essas duas figuras se concentram em Kote, um homem enigmático que se esconde sob a identidade de proprietário da hospedaria Marco do Percu'),
-(5, 3, 4, 'A cabana', '2008-07-08', 'Durante uma viagem de fim de semana, a filha mais nova de Mack Allen Phillips é raptada e evidências de que ela foi brutalmente assassinada são encontradas numa velha cabana.\r\nApós quatro anos vivendo numa tristeza profunda causada pela culpa e pela sauda'),
-(6, 4, 2, 'A culpa é das estrelas', '2012-10-01', '“A culpa é das estrelas” narra o romance de dois adolescentes que se conhecem (e se apaixonam) em um Grupo de Apoio para Crianças com Câncer: Hazel, uma jovem de dezesseis anos que sobrevive graças a uma droga revolucionária que detém a metástase em seus ');
+INSERT INTO `livros` (`Id_livro`, `autor`, `genero`, `Nome`, `Data_publicacao`, `Sinopse`) VALUES
+(1, 'Joaquin Manoel de Macedo', 'Romance', 'A Moreninha', '1884-01-01', 'Um grupo de amigos faz faculdade de medicina resolvem passar um feriado na casa de uma pessoa chamada Fabrício, entre eles está Augusto, um homem emocionado. Eles fazem uma aposta aonde quem se apaixonar deve escrever um livro'),
+(2, 'George R. R. Martin', 'Fantasia', 'A guerra dos tronos: As crônicas de Gelo e fogo vol.1', '1996-08-06', 'A guerra dos tronos é o primeiro livro da série best-seller internacional As Crônicas de Gelo e Fogo, que deu origem à adaptação de sucesso da HBO, Game of Thrones.\r\nO verão pode durar décadas. O inverno, toda uma vida. E a guerra dos tronos começou. Como'),
+(3, 'George R. R. Martin', 'Fantasia', 'A fúria dos reis: As crônicas de Gelo e Fogo vol.2', '1998-11-16', 'Um cometa da cor de fogo e sangue corta os céus. E, da antiga cidadela de Pedra do Dragão às costas áridas de Winterfell, reina o caos.\r\nEm A fúria dos reis , seis facções disputam o controle de uma terra dividida e o direito de ocupar o Trono de Ferro de'),
+(4, 'Patrick Rothfuss', 'Aventura', 'O nome do vento: A crônica do matador de reis vol.1', '2009-07-16', 'Ninguém sabe ao certo quem é o herói ou o vilão desse fascinante universo criado por Patrick Rothfuss. Na realidade, essas duas figuras se concentram em Kote, um homem enigmático que se esconde sob a identidade de proprietário da hospedaria Marco do Percu'),
+(5, 'William P. Young', 'Religioso', 'A cabana', '2008-07-08', 'Durante uma viagem de fim de semana, a filha mais nova de Mack Allen Phillips é raptada e evidências de que ela foi brutalmente assassinada são encontradas numa velha cabana.\r\nApós quatro anos vivendo numa tristeza profunda causada pela culpa e pela sauda'),
+(6, 'John Green', 'Drama', 'A culpa é das estrelas', '2012-10-01', '“A culpa é das estrelas” narra o romance de dois adolescentes que se conhecem (e se apaixonam) em um Grupo de Apoio para Crianças com Câncer: Hazel, uma jovem de dezesseis anos que sobrevive graças a uma droga revolucionária que detém a metástase em seus ');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `autores`
---
-ALTER TABLE `autores`
-  ADD PRIMARY KEY (`Id_autor`);
-
---
--- Índices de tabela `clientes`
+-- Índices para tabela `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`Id_cliente`);
 
 --
--- Índices de tabela `emprestimos`
+-- Índices para tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
   ADD PRIMARY KEY (`Id_emprestimo`),
   ADD KEY `Id_Livro` (`Id_Livro`),
   ADD KEY `Id_Cliente` (`Id_Cliente`);
-
---
--- Índices de tabela `generos`
---
-ALTER TABLE `generos`
-  ADD PRIMARY KEY (`Id_genero`);
-
---
--- Índices de tabela `livros`
---
-ALTER TABLE `livros`
-  ADD PRIMARY KEY (`Id_livro`),
-  ADD KEY `Id_autor` (`Id_autor`),
-  ADD KEY `Id_genero` (`Id_genero`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `autores`
---
-ALTER TABLE `autores`
-  MODIFY `Id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `Id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de tabela `emprestimos`
---
-ALTER TABLE `emprestimos`
-  MODIFY `Id_emprestimo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `generos`
---
-ALTER TABLE `generos`
-  MODIFY `Id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de tabela `livros`
---
-ALTER TABLE `livros`
-  MODIFY `Id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `emprestimos`
---
-ALTER TABLE `emprestimos`
-  ADD CONSTRAINT `emprestimos_ibfk_1` FOREIGN KEY (`Id_Livro`) REFERENCES `livros` (`Id_livro`),
-  ADD CONSTRAINT `emprestimos_ibfk_2` FOREIGN KEY (`Id_Cliente`) REFERENCES `clientes` (`Id_cliente`);
-
---
--- Restrições para tabelas `livros`
---
-ALTER TABLE `livros`
-  ADD CONSTRAINT `livros_ibfk_1` FOREIGN KEY (`Id_autor`) REFERENCES `autores` (`Id_autor`),
-  ADD CONSTRAINT `livros_ibfk_2` FOREIGN KEY (`Id_genero`) REFERENCES `generos` (`Id_genero`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
