@@ -6,26 +6,31 @@ if(!$conn){
     die("erro na conexão". mysqli.connect.error());
 }
 
-$Nome = "$post[Nome]";
+//Aqui definimos que as variaveis que são usadas aqui são as mesmas declaradas no html
+$Nome = "$_POST[Nome]";
 
-$Autor = "$post[Autor]";
+$Autor = "$_POST[Autor]";
 
-$Gen = "$post[Genero]";
+$Gen = "$_POST[Genero]";
 
-$Dat_pub = "$post[Dat_pub]";
+$Dat_pub = "$_POST[Dat_pub]";
 
-$sinopse = "$post[Sinopse]";
+$Sinopse = "$_POST[Sinopse]";
 
 
+//transformamos as informações coletadas em um comando sql
 $sql = "INSERT INTO `livros`
-(`Nome`,`Id_autor`, `Id_genero`, `Data_publicacao`,`Sinopse`)
+(`Id_livro`,`Nome`,`Autor`, `Genero`, `Data_publicacao`,`Sinopse`)
 VALUES  
-('$Nome', '$Autor', '$Gen', '$Dat_pub', '$sinopse')";
+('', '$Nome', '$Autor', '$Gen', '$Dat_pub', '$Sinopse')";
 
-
-$query = mysqli_query(mysql: $conn,query; $sql) or die(mysqli_error(mysql: $conn));
+//Tudo abaixo checa se o cadastro foi bem sucedido
+$query = mysqli_query(mysql: $conn,query: $sql) or die(mysqli_error(mysql: $conn));
 
 if($query){
-    echo"<center>"
-    echo"Cadastro realizado com sucesso"
+    echo"<center>";
+    echo"Cadastro realizado com sucesso";
+}
+else{
+    die("Falha ao cadastrar");
 }

@@ -4,7 +4,7 @@ $db_host = "localhost";
 $db_user = "root";
 $db_pass = ""; //não tem senha pois não foi definido nenhuma, provavelmente teria dentro de uma empresa
 
-$db_name = "biblioteca(thais)";
+$db_name = "biblioteca";
 
 //cria uma conexão com o banco de dados usando os parâmetros acima
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
