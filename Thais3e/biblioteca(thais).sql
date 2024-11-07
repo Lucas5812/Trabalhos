@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Nov-2024 às 22:25
--- Versão do servidor: 10.4.25-MariaDB
--- versão do PHP: 8.1.10
+-- Tempo de geração: 07/11/2024 às 02:48
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `clientes`
+-- Estrutura para tabela `clientes`
 --
 
 CREATE TABLE `clientes` (
@@ -35,10 +35,10 @@ CREATE TABLE `clientes` (
   `CEP` int(11) NOT NULL,
   `Data_nasc` date NOT NULL,
   `Num_telefone` bigint(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `clientes`
+-- Despejando dados para a tabela `clientes`
 --
 
 INSERT INTO `clientes` (`Id_cliente`, `CPF`, `Nome`, `Email`, `CEP`, `Data_nasc`, `Num_telefone`) VALUES
@@ -47,12 +47,13 @@ INSERT INTO `clientes` (`Id_cliente`, `CPF`, `Nome`, `Email`, `CEP`, `Data_nasc`
 (3, 87748228611, 'Romeu Roman Silveira do Nascimento', 'RomeuRSdN@gmail.com', 95430267, '2002-09-17', 81994526172),
 (4, 78952143509, 'Hades da Costa Ribeiro', 'Senhordosubmundo@outlook.com', 66666999, '0000-00-00', 81919934782),
 (5, 12567852517, 'Galadan Arthur Luís Sukuna', 'GaladanArthurLuisSukuna.org@hotmail.com', 12365478, '1957-02-21', 81917184586),
-(6, 32459893110, 'Euclides de Alexandria', 'EuclidesDXande@gmail.com', 4651552, '1975-02-28', 81938418325);
+(6, 32459893110, 'Euclides de Alexandria', 'EuclidesDXande@gmail.com', 4651552, '1975-02-28', 81938418325),
+(7, 7598436854, 'Rodrigo Arnaldo de Albuquerque', 'Rodrigardobuque@gmail.com', 75634895, '1990-07-24', 81935389404);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `emprestimos`
+-- Estrutura para tabela `emprestimos`
 --
 
 CREATE TABLE `emprestimos` (
@@ -61,10 +62,10 @@ CREATE TABLE `emprestimos` (
   `Id_Cliente` int(11) NOT NULL,
   `Data_Emprestimo` date NOT NULL,
   `data_devolucao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `emprestimos`
+-- Despejando dados para a tabela `emprestimos`
 --
 
 INSERT INTO `emprestimos` (`Id_emprestimo`, `Id_Livro`, `Id_Cliente`, `Data_Emprestimo`, `data_devolucao`) VALUES
@@ -82,7 +83,7 @@ INSERT INTO `emprestimos` (`Id_emprestimo`, `Id_Livro`, `Id_Cliente`, `Data_Empr
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `livros`
+-- Estrutura para tabela `livros`
 --
 
 CREATE TABLE `livros` (
@@ -92,10 +93,10 @@ CREATE TABLE `livros` (
   `Nome` varchar(255) NOT NULL,
   `Data_publicacao` date NOT NULL,
   `Sinopse` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `livros`
+-- Despejando dados para a tabela `livros`
 --
 
 INSERT INTO `livros` (`Id_livro`, `autor`, `genero`, `Nome`, `Data_publicacao`, `Sinopse`) VALUES
@@ -104,25 +105,54 @@ INSERT INTO `livros` (`Id_livro`, `autor`, `genero`, `Nome`, `Data_publicacao`, 
 (3, 'George R. R. Martin', 'Fantasia', 'A fúria dos reis: As crônicas de Gelo e Fogo vol.2', '1998-11-16', 'Um cometa da cor de fogo e sangue corta os céus. E, da antiga cidadela de Pedra do Dragão às costas áridas de Winterfell, reina o caos.\r\nEm A fúria dos reis , seis facções disputam o controle de uma terra dividida e o direito de ocupar o Trono de Ferro de'),
 (4, 'Patrick Rothfuss', 'Aventura', 'O nome do vento: A crônica do matador de reis vol.1', '2009-07-16', 'Ninguém sabe ao certo quem é o herói ou o vilão desse fascinante universo criado por Patrick Rothfuss. Na realidade, essas duas figuras se concentram em Kote, um homem enigmático que se esconde sob a identidade de proprietário da hospedaria Marco do Percu'),
 (5, 'William P. Young', 'Religioso', 'A cabana', '2008-07-08', 'Durante uma viagem de fim de semana, a filha mais nova de Mack Allen Phillips é raptada e evidências de que ela foi brutalmente assassinada são encontradas numa velha cabana.\r\nApós quatro anos vivendo numa tristeza profunda causada pela culpa e pela sauda'),
-(6, 'John Green', 'Drama', 'A culpa é das estrelas', '2012-10-01', '“A culpa é das estrelas” narra o romance de dois adolescentes que se conhecem (e se apaixonam) em um Grupo de Apoio para Crianças com Câncer: Hazel, uma jovem de dezesseis anos que sobrevive graças a uma droga revolucionária que detém a metástase em seus ');
+(6, 'John Green', 'Drama', 'A culpa é das estrelas', '2012-10-01', '“A culpa é das estrelas” narra o romance de dois adolescentes que se conhecem (e se apaixonam) em um Grupo de Apoio para Crianças com Câncer: Hazel, uma jovem de dezesseis anos que sobrevive graças a uma droga revolucionária que detém a metástase em seus '),
+(7, 'George R. R. Martin', 'Fantasia', 'A tormenta de espadas: As crônicas de Gelo e fogo vol.3', '2000-08-08', 'O futuro de Westeros está em jogo, e ninguém descansará até que os Sete Reinos tenham explodido em uma verdadeira tormenta de espadas. Dos cinco pretendentes ao trono, um está morto e outro caiu em desgraça, e ainda assim a guerra continua em toda sua fúr');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `clientes`
+-- Índices de tabela `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`Id_cliente`);
 
 --
--- Índices para tabela `emprestimos`
+-- Índices de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
   ADD PRIMARY KEY (`Id_emprestimo`),
   ADD KEY `Id_Livro` (`Id_Livro`),
   ADD KEY `Id_Cliente` (`Id_Cliente`);
+
+--
+-- Índices de tabela `livros`
+--
+ALTER TABLE `livros`
+  ADD PRIMARY KEY (`Id_livro`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `Id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `emprestimos`
+--
+ALTER TABLE `emprestimos`
+  MODIFY `Id_emprestimo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `livros`
+--
+ALTER TABLE `livros`
+  MODIFY `Id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
